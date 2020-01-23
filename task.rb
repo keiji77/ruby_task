@@ -31,7 +31,11 @@ def q4
   sports = ["サッカー", "フットサル", nil, "野球", "バスケ", nil, "バレー"]
 
   # 以下に回答を記載
+  #p sports.compact!
+  p sports.compact
+  p sports
   p sports.compact!
+  p sports
 end
 
 def q5
@@ -56,29 +60,44 @@ def q7
   array = ["1", "2", "3", "4", "5"]
 
   # 以下に回答を記載  
-  p array.map!{ |number| number.to_i }
+  #p array.map!{|number| number.to_i }
+  p array.map!(&:to_i)
 end
 
 def q8
   programming_languages = %w(ruby php python javascript)
 
   # 以下に回答を記載
-  upper_case_programming_languages = programming_languages.map{ |lang| lang.upcase}
   
-  p programming_languages.map{ |lang| lang.capitalize}
-  p upper_case_programming_languages
+  p programming_languages.map!{ |lang| lang.capitalize }
+  p upper_case_programming_languages = programming_languages.map!{ |lang| lang.upcase }
+
 end
 
 def q9
   names = ["田中", "佐藤", "佐々木", "高橋"]
 
   # 以下に回答を記載
-  index = 0
+  #index = 0
 
-  names.each do |name|
-    index += 1
-    puts "会員No.#{index} #{name}さん"
+  #names.each do |name|
+   # index += 1
+    #puts "会員No.#{index} #{name}さん"
+  #end
+
+  names.each.with_index do |name, i|
+    puts "会員No.#{i+1} #{name}さん"
   end
+
+  #別の方法
+  #names.each.with_index(1) do |name, i|
+   # puts "会員No.#{i} #{name}さん"
+  #end
+
+  #each_with_indexを使ったやり方
+  #names.each_with_index do |name, i|
+   # puts "会員No.#{i+1} #{name}さん"
+  #end
 end
 
 def q10
@@ -99,14 +118,20 @@ def q11
   sports = ["サッカー", "バスケ", "野球", ["フットサル", "野球"], "水泳", "ハンドボール", ["卓球", "サッカー", "ボルダリング"]]
 
   # 以下に回答を記載
+  puts "ユーザーの趣味一覧"
 
+  sports2 = sports.flatten.uniq
+
+  sports2.each.with_index(1) do |sport,i|
+    puts "No.#{i} #{sport}"
+  end
 end
 
 def q12
   data = { user: { name: "satou", age: 33 } }
 
   # 以下に回答を記載
-
+  puts data[:user][:name]
 end
 
 def q13
@@ -114,7 +139,7 @@ def q13
   update_data = { age: 32, address: "沖縄" }
 
   # 以下に回答を記載
-
+  
 end
 
 def q14
