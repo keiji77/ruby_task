@@ -85,7 +85,7 @@ def q9
     #puts "会員No.#{index} #{name}さん"
   #end
 
-  names.each＿with_index(1) do |name, i|
+  names.each.with_index(1) do |name, i|
     puts "会員No.#{i} #{name}さん"
   end
 
