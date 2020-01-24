@@ -69,8 +69,8 @@ def q8
 
   # 以下に回答を記載
   
-  p programming_languages.map!{ |lang| lang.capitalize }
-  p upper_case_programming_languages = programming_languages.map!{ |lang| lang.upcase }
+  p programming_languages.map!(&:capitalize)
+  p upper_case_programming_languages = programming_languages.map!( &:upcase )
 
 end
 
@@ -85,8 +85,8 @@ def q9
     #puts "会員No.#{index} #{name}さん"
   #end
 
-  names.each.with_index do |name, i|
-    puts "会員No.#{i+1} #{name}さん"
+  names.each＿with_index(1) do |name, i|
+    puts "会員No.#{i} #{name}さん"
   end
 
   #別の方法
@@ -139,14 +139,14 @@ def q13
   update_data = { age: 32, address: "沖縄" }
 
   # 以下に回答を記載
-  
+  p user_data.merge!(update_data)
 end
 
 def q14
   data = { name: "satou", age: 33, address: "saitama", hobby: "soccer", email: "hoge@fuga.com" }
 
   # 以下に回答を記載
-
+  p data.keys
 end
 
 def q15
@@ -154,7 +154,9 @@ def q15
   data2 = { name: "yamada", hobby: "baseball", role: "normal" }
 
   # 以下に回答を記載
-
+  p data1.has_key?(:age)
+  p data2.has_key?(:age)
+  
 end
 
 def q16
@@ -166,12 +168,15 @@ def q16
   ]
 
   # 以下に回答を記載
+  users.each do |user|
+    puts "私の名前は#{user[:name]}です。年齢は#{user[:age]}です。"
+  end
 
 end
 
 class UserQ17
   # 以下に回答を記載
-
+  
 end
 
 def q17
