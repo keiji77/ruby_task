@@ -179,12 +179,14 @@ class UserQ17
     @admin = info[:admin] 
   end
 
+
   def info
+    admin = @admin ? "有り" : "無し"
     puts <<~EOS
       名前: #{@name}
       年齢: #{@age}
       性別: #{@gender}
-      管理者権限: #{@admin ? "有り":"無し"}
+      管理者権限: #{@admin}
     EOS
   end
 end
@@ -201,20 +203,20 @@ end
 
 class UserQ18
   # 以下に回答を記載
-
-  def initialize(**params)
-    @name = params[:name] 
-    @age = params[:age]
-  end
-
-  def introduce
-    if @age > 10
-      puts "こんにちは、#{@name}と申します。宜しくお願いいたします。"
-    else
-      puts "はいさいまいど〜，#{@name}です！！！"
+    def initialize(**params)
+      @name = params[:name]
+      @age = params[:age]
     end
-  end
+
+    def introduce
+      if @age > 10
+        puts "こんにちは、#{@name}と申します。宜しくお願いします。"
+      else
+        puts "はいさいまいど〜、#{@name}です！！！"
+      end
+    end
 end
+
 
 def q18
   # ここは変更しないで下さい
@@ -230,10 +232,9 @@ end
 
 class Item
   # 以下を修正して下さい
-  attr_accessor :name
-
-  def initialize(**params)
-    @name = params[:name]
+  attr_reader :name
+  def initialize(**name)
+    @name = name
   end
 end
 
@@ -245,7 +246,7 @@ end
 
 class UserQ20
   # 以下に回答を記載
-  attr_accessor :name, :age
+  attr_reader :name, :age
    def initialize(**user)
     @name = user[:name]
     @age = user[:age]
