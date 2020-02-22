@@ -31,11 +31,7 @@ def q4
   sports = ["サッカー", "フットサル", nil, "野球", "バスケ", nil, "バレー"]
 
   # 以下に回答を記載
-  #p sports.compact!
-  p sports.compact
-  p sports
   p sports.compact!
-  p sports
 end
 
 def q5
@@ -176,7 +172,21 @@ end
 
 class UserQ17
   # 以下に回答を記載
-  
+  def initialize(**info)
+    @name = info[:name]
+    @age = info[:age]
+    @gender = info[:gender]
+    @admin = info[:admin] 
+  end
+
+  def info
+    puts <<~EOS
+      名前: #{@name}
+      年齢: #{@age}
+      性別: #{@gender}
+      管理者権限: #{@admin ? "有り":"無し"}
+    EOS
+  end
 end
 
 def q17
@@ -192,6 +202,18 @@ end
 class UserQ18
   # 以下に回答を記載
 
+  def initialize(**params)
+    @name = params[:name] 
+    @age = params[:age]
+  end
+
+  def introduce
+    if @age > 10
+      puts "こんにちは、#{@name}と申します。宜しくお願いいたします。"
+    else
+      puts "はいさいまいど〜，#{@name}です！！！"
+    end
+  end
 end
 
 def q18
@@ -203,11 +225,15 @@ def q18
   puts user2.introduce
 end
 
+
+
+
 class Item
   # 以下を修正して下さい
+  attr_accessor :name
 
-  def initialize(name)
-    @name = name
+  def initialize(**params)
+    @name = params[:name]
   end
 end
 
@@ -219,12 +245,39 @@ end
 
 class UserQ20
   # 以下に回答を記載
-
+  attr_accessor :name, :age
+   def initialize(**user)
+    @name = user[:name]
+    @age = user[:age]
+   end
 end
 
 class Zoo
   # 以下に回答を記載
 
+  def initialize(**params)
+    @name = params[:name]
+    @infant = params[:entry_fee][:infant]
+    @children = params[:entry_fee][:children]
+    @adult = params[:entry_fee][:adult]
+    @senior = params[:entry_fee][:senior]
+  end
+
+  def info_entry_fee(user)
+    fee =
+    case user.age
+    when 0..5
+      @infant
+    when 6..12
+      @children
+    when 13..64
+      @adult
+    when 65..120
+      @senior
+    end
+
+    puts "#{user.name}さんの入場料金は#{fee}円です。"
+  end
 end
 
 
@@ -243,3 +296,4 @@ def q20
     zoo.info_entry_fee(user)
   end
 end
+
