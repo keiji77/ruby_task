@@ -181,12 +181,12 @@ class UserQ17
 
 
   def info
-    admin = @admin ? "有り" : "無し"
+    
     puts <<~EOS
       名前: #{@name}
       年齢: #{@age}
       性別: #{@gender}
-      管理者権限: #{@admin}
+      管理者権限: #{admin = @admin ? "有り" : "無し"}
     EOS
   end
 end
@@ -223,8 +223,8 @@ def q18
   user1 = UserQ18.new(name: "あじー", age: 32)
   user2 = UserQ18.new(name: "ゆたぼん", age: 10)
 
-  puts user1.introduce
-  puts user2.introduce
+  user1.introduce
+  user2.introduce
 end
 
 
@@ -233,7 +233,7 @@ end
 class Item
   # 以下を修正して下さい
   attr_reader :name
-  def initialize(**name)
+  def initialize(name:)
     @name = name
   end
 end
